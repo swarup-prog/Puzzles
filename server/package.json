@@ -1,0 +1,14 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Backend for Puzzles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Swarup Lamichhane",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

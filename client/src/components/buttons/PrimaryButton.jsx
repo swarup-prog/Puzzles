@@ -6,6 +6,10 @@ const PrimaryButton = ({ type, name, inverted, disabled }) => {
     [color, background] = [background, color];
   }
 
+  if (disabled) {
+    background = "#022e4d";
+  }
+
   return (
     <div>
       <button

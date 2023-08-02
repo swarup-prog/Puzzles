@@ -19,6 +19,13 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const disableButton = () => {
+    if (!formData.name && !formData.email && !formData.message) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <div>
       <Header banner={contactUsBanner} pageTitle="CONTACT US" />
@@ -61,7 +68,11 @@ const Contact = () => {
                 name="message"
                 onChange={changeHandler}
               />
-              <PrimaryButton type="submit" name="SEND MESSAGE" />
+              <PrimaryButton
+                type="submit"
+                name="SEND MESSAGE"
+                // disabled={false}
+              />
             </div>
           </form>
         </section>

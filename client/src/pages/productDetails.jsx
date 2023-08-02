@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 
 import Footer from "../components/Footer";
 import NavigationButton from "../components/buttons/NavigationButton";
+import Dropdown from "../components/Dropdown";
 
 import clothesData from "../data/clothesData";
 
@@ -16,12 +17,18 @@ const ProductDetails = () => {
         <img src={cloth.image} alt="cloth" width="550px" height="685px" />
         <div style={styles.details}>
           <div style={styles.prodName}>{cloth.name}</div>
-          <div style={styles.price}>$ {cloth.price}</div>
-          <div style={styles.clothDesc}>{cloth.description}</div>
+          <div style={styles.price}>$ {c}</div>
+          <div style={styles.clothDesc}>{cloth.descriloth.priception}</div>
+          <Dropdown
+            name="clothSize"
+            options={cloth.size}
+            defaultValue="Select Size"
+          />
           <NavigationButton to="" name="ADD TO CART" />
         </div>
       </section>
-      <section style={styles.productDescReview}>dafadf</section>
+      <section style={styles.productDescReview}></section>
+
       {/* Footer  */}
       <Footer />
     </div>
@@ -38,17 +45,36 @@ const styles = {
 
   productDetail: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     margin: "40px 165px 110px 165px",
+    gap: 100,
   },
 
-  details: {},
+  details: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 36,
+  },
 
-  prodName: {},
+  prodName: {
+    fontSize: "36px",
+    lineHeight: "48px",
+    fontFamily: "Arimo",
+    fontWeight: 700,
+  },
 
-  price: {},
+  price: {
+    fontSize: "24px",
+    lineHeight: "28.8px",
+    color: "#024E82",
+  },
 
-  clothDesc: {},
+  clothDesc: {
+    fontSize: "16px",
+    lineHeight: "19.2px",
+    color: "#555555",
+    width: "550px",
+  },
 
   productDescReview: {},
 };

@@ -21,6 +21,7 @@ const clothesData = [
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: plainWhiteShirt,
     category: "",
+    size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "newArrival",
   },
   {
@@ -32,6 +33,7 @@ const clothesData = [
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: denimJacket,
     category: "",
+    size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "newArrival",
   },
   {
@@ -43,6 +45,7 @@ const clothesData = [
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: blackPoloShirt,
     category: "",
+    size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "newArrival",
   },
   {
@@ -54,6 +57,7 @@ const clothesData = [
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: blueSweatShirt,
     category: "",
+    size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "newArrival",
   },
   {
@@ -65,6 +69,7 @@ const clothesData = [
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: bluePlainShirt,
     category: "",
+    size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "newArrival",
   },
   {
@@ -87,6 +92,7 @@ const clothesData = [
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: outcastTShirt,
     category: "",
+    size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "newArrival",
   },
   {
@@ -98,6 +104,7 @@ const clothesData = [
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: poloPlainShirt,
     category: "",
+    size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "newArrival",
   },
   {
@@ -109,6 +116,7 @@ const clothesData = [
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: grayPoloShirt,
     category: "",
+    size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "topSeller",
   },
   {
@@ -131,6 +139,7 @@ const clothesData = [
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: poloWhiteShirt,
     category: "",
+    size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "topSeller",
   },
   {
@@ -142,6 +151,7 @@ const clothesData = [
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: pinkCasualShirt,
     category: "",
+    size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "topSeller",
   },
 ];

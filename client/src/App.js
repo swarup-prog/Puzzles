@@ -12,7 +12,6 @@ import Signup from "./pages/signup";
 
 const App = () => {
   return (
-    // <Router>
     <div>
       <Navbar />
       <Routes>
@@ -28,7 +27,6 @@ const App = () => {
         />
       </Routes>
     </div>
-    // </Router>
   );
 };
 

@@ -10,7 +10,7 @@ const Signup = () => {
       style={{
         display: "flex",
         flexDirection: "row",
-        height: "100vh",
+        height: "90.5vh",
       }}
     >
       <section
@@ -54,7 +54,8 @@ const Signup = () => {
             alignItems: "center",
           }}
         >
-          <TextInput type="text" name="username" label="Username" />
+          <TextInput type="text" name="firtName" label="First Name" />
+          <TextInput type="text" name="lastName" label="Last Name" />
           <TextInput type="email" name="email" label="Email" />
           <TextInput type="password" name="password " label="Password" />
           <TextInput

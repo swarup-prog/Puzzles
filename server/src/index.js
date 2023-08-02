@@ -1,34 +1,21 @@
+require("dotenv").config();
 const express = require("express");
+const helmet = require("helmet");
+const connection = require("./db");
+
+const registerRoutes = require("./routes/authentication/register.js");
+
+connection();
 
 const app = express();
 
-const data = [
-  {
-    id: 1,
-    name: "XYZ",
-    position: "ABC",
-  },
-  {
-    id: 2,
-    name: "XYZ",
-    position: "ABC",
-  },
-  {
-    id: 3,
-    name: "XYZ",
-    position: "ABC",
-  },
-  {
-    id: 4,
-    name: "XYZ",
-    position: "ABC",
-  },
-];
+//Middlewares
+app.use(helmet());
+app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send(data);
-});
+//routes
+app.use("/api/register", registerRoutes);
 
-app.listen(5000, () => {
-  console.log("Server is running on port 5000.");
+app.listen(8000, () => {
+  console.log("listening on port 8000");
 });

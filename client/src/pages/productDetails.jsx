@@ -17,7 +17,7 @@ const ProductDetails = () => {
         <img src={cloth.image} alt="cloth" width="550px" height="685px" />
         <div style={styles.details}>
           <div style={styles.prodName}>{cloth.name}</div>
-          <div style={styles.price}>$ {c}</div>
+          <div style={styles.price}>$ {cloth.price}</div>
           <div style={styles.clothDesc}>{cloth.descriloth.priception}</div>
           <Dropdown
             name="clothSize"

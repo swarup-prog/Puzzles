@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 
 import { Routes, Route } from "react-router-dom";
 import Signup from "./pages/signup";
+import ShoppingCart from "./pages/shoppingCart";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           path="/shop/productDetails/:productId"
           element={<ProductDetails />}
         />
+        <Route exact path="/shoppingCart" element={<ShoppingCart />} />
       </Routes>
     </div>
   );

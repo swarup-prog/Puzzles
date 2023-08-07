@@ -1,10 +1,38 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
 
 import Footer from "../components/Footer";
 import NavigationButton from "../components/buttons/NavigationButton";
 import Dropdown from "../components/Dropdown";
 
 import clothesData from "../data/clothesData";
+
+const Rating = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const haandleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  return (
+    <div>
+      {[...Array(5)].map((index) => (
+        <FaStar
+          key={index}
+          size={17}
+          color={isHovered ? "#D6763C" : "#D6763C61"}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={haandleMouseLeave}
+        />
+      ))}
+    </div>
+  );
+};
 
 const ProductDetails = () => {
   const { productId } = useParams();
@@ -17,14 +45,30 @@ const ProductDetails = () => {
         <img src={cloth.image} alt="cloth" width="550px" height="685px" />
         <div style={styles.details}>
           <div style={styles.prodName}>{cloth.name}</div>
+          <Rating />
           <div style={styles.price}>$ {cloth.price}</div>
-          <div style={styles.clothDesc}>{cloth.descriloth.priception}</div>
+          <div style={styles.clothDesc}>{cloth.description}</div>
           <Dropdown
             name="clothSize"
             options={cloth.size}
             defaultValue="Select Size"
           />
           <NavigationButton to="" name="ADD TO CART" />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              fontSize: "14px",
+            }}
+          >
+            <span style={{ color: "#1D1D1D" }}>
+              Category:{" "}
+              <span style={{ color: "#555555" }}>{cloth.category}</span>
+            </span>
+            <span style={{ color: "#1D1D1D" }}>
+              Tags: <span style={{ color: "#555555" }}>{cloth.tags}</span>
+            </span>
+          </div>
         </div>
       </section>
       <section style={styles.productDescReview}></section>

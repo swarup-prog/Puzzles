@@ -39,14 +39,6 @@ const Login = () => {
           alignItems: "center",
         }}
       >
-        {/* <img
-          src={loginPhoto}
-          alt=""
-          style={{
-            width: "400px",
-            height: "400px",
-          }}
-        /> */}
         PUZZLES
       </section>
       <section
@@ -74,6 +66,7 @@ const Login = () => {
             name="password "
             label="Password"
             value={formData.password}
+            onChange={changeHandler}
           />
           <PrimaryButton type="submit" name="Login" />
         </form>

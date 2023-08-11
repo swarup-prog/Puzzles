@@ -22,36 +22,9 @@ const Login = () => {
   const navigate = useNavigate();
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        height: "90.5vh",
-      }}
-    >
-      <section
-        style={{
-          display: "flex",
-          flex: 1,
-          background: "#f5f7f9",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        PUZZLES
-      </section>
-      <section
-        style={{
-          display: "flex",
-          flex: 1,
-          flexDirection: "column",
-          background: "#ffffff",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: 30,
-        }}
-      >
+    <div style={styles.container}>
+      <section style={styles.bannerSection}>PUZZLES</section>
+      <section style={styles.formSection}>
         <h1> LOGIN</h1>
         <form style={styles.form} onSubmit={submitHandler}>
           <TextInput
@@ -85,6 +58,31 @@ const Login = () => {
 export default Login;
 
 const styles = {
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    height: "90.5vh",
+  },
+
+  bannerSection: {
+    display: "flex",
+    flex: 1,
+    background: "#f5f7f9",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  formSection: {
+    display: "flex",
+    flex: 1,
+    flexDirection: "column",
+    background: "#ffffff",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 30,
+  },
+
   form: {
     display: "flex",
     flexDirection: "column",

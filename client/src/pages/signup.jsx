@@ -1,11 +1,15 @@
 import { useState } from "react";
-import PrimaryButton from "../components/buttons/PrimaryButton";
-import TextInput from "../components/TextInput";
 import { useNavigate } from "react-router-dom";
 import { signup } from "../apis/signup";
+import { useAlert } from "react-alert";
+
+import PrimaryButton from "../components/buttons/PrimaryButton";
+import TextInput from "../components/TextInput";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const alert = useAlert();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -20,7 +24,7 @@ const Signup = () => {
 
   const checkPasswordMatch = () => {
     if (formData.password !== formData.confirmPassword) {
-      alert("Password did not match!");
+      alert.error("Password did not match!");
     }
     return true;
   };
@@ -31,7 +35,7 @@ const Signup = () => {
       const response = await signup(formData);
 
       if (response.success) {
-        alert("User registered successfully!");
+        alert.success("User registered successfully!");
       } else {
       }
       console.log("response", response);

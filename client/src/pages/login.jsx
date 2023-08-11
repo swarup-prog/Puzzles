@@ -1,10 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAlert } from "react-alert";
+import { login } from "../apis/login";
 
 import TextInput from "../components/TextInput";
 import PrimaryButton from "../components/buttons/PrimaryButton";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const alert = useAlert();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,12 +19,17 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("Logged in successfully!");
-    navigate("/");
+    const response = await login(formData);
+
+    if (response.success) {
+      alert.success("Logged in successfully!");
+    } else {
+      alert.error(response.error);
+    }
+    console.log("response", response);
   };
-  const navigate = useNavigate();
 
   return (
     <div style={styles.container}>
@@ -36,7 +46,7 @@ const Login = () => {
           />
           <TextInput
             type="password"
-            name="password "
+            name="password"
             label="Password"
             value={formData.password}
             onChange={changeHandler}

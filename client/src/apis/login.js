@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const signup = async ({ email, password }) => {
+export const login = async ({ email, password }) => {
   const API_URL = "http://localhost:8000/api";
 
   try {

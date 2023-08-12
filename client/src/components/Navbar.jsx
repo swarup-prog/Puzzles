@@ -1,8 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { BiUserCircle } from "react-icons/bi";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+
 import NavigationButton from "./buttons/NavigationButton";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const user = localStorage.getItem("userToken");
 
   return (
     <nav style={styles.nav}>
@@ -11,11 +15,30 @@ const Navbar = () => {
       </div>
       <div style={styles.pageNav}>
         <span onClick={() => navigate("/")}>HOME</span>
+
         <span onClick={() => navigate("/shop")}> SHOP</span>
         <span onClick={() => navigate("/about")}> ABOUT</span>
         <span onClick={() => navigate("/contact")}>CONTACT US</span>
       </div>
-      <NavigationButton to="/login" name="LOGIN" styles={{ fontWeight: 700 }} />
+      <div style={styles.pageNav}>
+        {user && (
+          <>
+            <span onClick={() => navigate("/contact")}>
+              <AiOutlineShoppingCart size="25px" />
+            </span>
+            <span onClick={() => navigate("/shop")}>
+              <BiUserCircle size="25px" />
+            </span>
+          </>
+        )}
+        {!user && (
+          <NavigationButton
+            to="/login"
+            name="LOGIN"
+            styles={{ fontWeight: 700 }}
+          />
+        )}
+      </div>
     </nav>
   );
 };

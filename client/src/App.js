@@ -25,9 +25,9 @@ const App = () => {
 
   return (
     <div>
-      <UserContext.Provider value={{ user, setUser }}>
-        <Navbar />
-        <Provider template={AlertTemplate} {...options}>
+      <Navbar />
+      <Provider template={AlertTemplate} {...options}>
+        <UserContext.Provider value={{ user, setUser }}>
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/shop" element={<Shop />} />
@@ -41,8 +41,8 @@ const App = () => {
             />
             <Route exact path="/shoppingCart" element={<ShoppingCart />} />
           </Routes>
-        </Provider>
-      </UserContext.Provider>
+        </UserContext.Provider>
+      </Provider>
     </div>
   );
 };

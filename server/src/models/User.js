@@ -27,10 +27,17 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET_CODE, {
-    expiresIn: "7d",
-  });
-  return token;
+  try {
+    // const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET_CODE, {
+    //   expiresIn: "7d",
+    // });
+    const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET_KEY, {
+      expiresIn: "7d",
+    });
+    return token;
+  } catch (error) {
+    throw new Error("Token generation error: " + error.message);
+  }
 };
 
 const User = mongoose.model("User", userSchema);

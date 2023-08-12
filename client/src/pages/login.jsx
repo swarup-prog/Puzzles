@@ -1,14 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useAlert } from "react-alert";
 import { login } from "../apis/login";
+import jwt_decode from "jwt-decode";
 
 import TextInput from "../components/TextInput";
 import PrimaryButton from "../components/buttons/PrimaryButton";
+import { UserContext } from "../context/userContext";
 
 const Login = () => {
   const navigate = useNavigate();
   const alert = useAlert();
+  const { user, setUser } = useContext(UserContext);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -24,10 +27,15 @@ const Login = () => {
     const response = await login(formData);
 
     if (response.success) {
+      const userToken = response.data.token;
+      localStorage.setItem("userToken", userToken);
+      setUser(jwt_decode(userToken)._id);
       alert.success("Logged in successfully!");
+      navigate("/");
     } else {
       alert.error(response.error);
     }
+    console.log(await user);
     console.log("response", response);
   };
 

@@ -1,9 +1,22 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/api";
-
-const fetchUser = async (userId) => {
+export const getUserData = async (userId) => {
   try {
-    const response = await axios.get(`${API_URL}/getUser/${userId}`);
-  } catch (error) {}
+    const API_URL = "http://localhost:8000/api";
+
+    const response = await axios.get(`${API_URL}/user/${userId}`);
+    const user = response.data;
+    return { success: true, user };
+  } catch (error) {
+    if (
+      error.response &&
+      error.response?.status >= 400 &&
+      error.response?.status <= 500
+    ) {
+      return {
+        success: false,
+        error: error.response.data.message || error.response.data,
+      };
+    }
+  }
 };

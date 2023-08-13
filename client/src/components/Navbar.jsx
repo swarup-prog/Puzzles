@@ -1,12 +1,25 @@
 import { useNavigate } from "react-router-dom";
-import { BiUserCircle } from "react-icons/bi";
+import {
+  BiUserCircle,
+  BiLogOut,
+  BiSolidShoppingBagAlt,
+  BiMenuAltRight,
+} from "react-icons/bi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useState } from "react";
 
 import NavigationButton from "./buttons/NavigationButton";
+import DropdownItem from "./DropdownItem";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const user = localStorage.getItem("userToken");
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const logoutClickHandler = () => {
+    return;
+  };
 
   return (
     <nav style={styles.nav}>
@@ -24,11 +37,27 @@ const Navbar = () => {
         {user && (
           <>
             <span onClick={() => navigate("/contact")}>
-              <AiOutlineShoppingCart size="25px" />
-            </span>
-            <span onClick={() => navigate("/shop")}>
               <BiUserCircle size="25px" />
             </span>
+            <span onClick={() => navigate("/contact")}>
+              <AiOutlineShoppingCart size="25px" />
+            </span>
+            <span onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+              <BiMenuAltRight size="25px" />
+            </span>
+
+            {isDropdownOpen && (
+              <div style={styles.dropdownContainer}>
+                <ul style={styles.dropdownList}>
+                  <DropdownItem icon={BiSolidShoppingBagAlt} title="ORDERS" />
+                  <DropdownItem
+                    icon={BiLogOut}
+                    title="LOGOUT"
+                    onClick={logoutClickHandler}
+                  />
+                </ul>
+              </div>
+            )}
           </>
         )}
         {!user && (
@@ -71,5 +100,25 @@ const styles = {
     gap: 30,
     color: "#000000",
     cursor: "pointer",
+  },
+
+  dropdownContainer: {
+    position: "absolute",
+    top: "90px",
+    right: "20px",
+    backgroundColor: "#FFFFFF",
+    borderRadius: "var(--border-radius)",
+    width: "100px",
+    margin: "0 145px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+  },
+
+  dropdownList: {
+    display: "flex",
+    flexDirection: "column",
+    listStyle: "none",
+    alignItems: "center",
+    padding: 0,
+    margin: 0,
   },
 };

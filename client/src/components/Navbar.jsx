@@ -6,19 +6,23 @@ import {
   BiMenuAltRight,
 } from "react-icons/bi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../context/userContext";
 
 import NavigationButton from "./buttons/NavigationButton";
 import DropdownItem from "./DropdownItem";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const user = localStorage.getItem("userToken");
+  const userToken = localStorage.getItem("userToken");
+  const { setUser } = useContext(UserContext);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const logoutClickHandler = () => {
-    return;
+    localStorage.removeItem("userToken");
+    setUser(null);
+    navigate("/");
   };
 
   return (
@@ -34,7 +38,7 @@ const Navbar = () => {
         <span onClick={() => navigate("/contact")}>CONTACT US</span>
       </div>
       <div style={styles.pageNav}>
-        {user && (
+        {userToken && (
           <>
             <span onClick={() => navigate("/contact")}>
               <BiUserCircle size="25px" />
@@ -60,7 +64,7 @@ const Navbar = () => {
             )}
           </>
         )}
-        {!user && (
+        {!userToken && (
           <NavigationButton
             to="/login"
             name="LOGIN"

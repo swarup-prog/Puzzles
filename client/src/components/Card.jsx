@@ -15,9 +15,9 @@ const Card = ({ image, title, price, onClick }) => {
     <div
       style={styles.productCard}
       onClick={onClick}
-      // ref={cardRef}
-      onMouseEnter={mouseEnterHandler}
-      onMouseLeave={mouseLeaveHandler}
+      // // ref={cardRef}
+      // onMouseEnter={mouseEnterHandler}
+      // onMouseLeave={mouseLeaveHandler}
     >
       <img src={image} alt={title} style={styles.image} />
       <div style={styles.details}>

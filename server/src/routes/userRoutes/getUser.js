@@ -4,7 +4,7 @@ const { User } = require("../../models/User");
 router.get("/:id", async (req, res) => {
   try {
     const userId = req.params.id;
-    const user = await User.findById(userId);
+    const user = await User.findById(userId, { password: 0, __v: 0 });
 
     if (!user) {
       return res.status(404).send({ message: "User not found." });

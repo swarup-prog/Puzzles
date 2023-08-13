@@ -27,7 +27,7 @@ app.use(express.json());
 //routes
 app.use("/api/register", registerRoutes);
 app.use("/api/login", loginRoutes);
-app.get("/api/getUser/:id", getUserRoutes);
+app.use("/api/user", getUserRoutes);
 
 app.listen(8000, () => {
   console.log("listening on port 8000");

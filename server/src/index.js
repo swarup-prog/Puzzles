@@ -6,6 +6,7 @@ const cors = require("cors");
 
 const registerRoutes = require("./routes/authentication/register.js");
 const loginRoutes = require("./routes/authentication/login.js");
+const getUserRoutes = require("./routes/userRoutes/getUser.js");
 
 connection();
 
@@ -26,6 +27,7 @@ app.use(express.json());
 //routes
 app.use("/api/register", registerRoutes);
 app.use("/api/login", loginRoutes);
+app.get("/api/getUser/:id", getUserRoutes);
 
 app.listen(8000, () => {
   console.log("listening on port 8000");

@@ -51,7 +51,7 @@ const Footer = () => {
       <hr style={styles.separator} />
       <section style={styles.copyrightSection}>
         <div>
-          <span style={styles.span}>&copy; 2023 Puzles eCommerce</span>
+          <span style={styles.span}>&copy; 2023 Swarup Lamichhane</span>
           <div style={{ display: "flex", gap: 10 }}>
             <span style={styles.span}>Privacy Policy</span>
             <span style={styles.span}>Terms & Conditions</span>

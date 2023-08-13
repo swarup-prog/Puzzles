@@ -1,21 +1,21 @@
 import { useRef } from "react";
 
 const Card = ({ image, title, price, onClick }) => {
-  const cardRef = useRef();
+  // const cardRef = useRef();
 
-  const mouseEnterHandler = () => {
-    cardRef.current.style.boxShadow = `0 10px 14px rgba(0, 0, 0, 0.9)`;
-  };
+  // const mouseEnterHandler = () => {
+  //   cardRef.current.style.boxShadow = `0 10px 14px rgba(0, 0, 0, 0.9)`;
+  // };
 
-  const mouseLeaveHandler = () => {
-    cardRef.current.style.boxShadow = `none`;
-  };
+  // const mouseLeaveHandler = () => {
+  //   cardRef.current.style.boxShadow = `none`;
+  // };
 
   return (
     <div
       style={styles.productCard}
       onClick={onClick}
-      ref={cardRef}
+      // ref={cardRef}
       onMouseEnter={mouseEnterHandler}
       onMouseLeave={mouseLeaveHandler}
     >

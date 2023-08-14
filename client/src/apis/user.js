@@ -5,8 +5,8 @@ export const getUserData = async (userId) => {
     const API_URL = "http://localhost:8000/api";
 
     const response = await axios.get(`${API_URL}/user/${userId}`);
-    const user = response.data;
-    return { success: true, user };
+    const data = response.data;
+    return data;
   } catch (error) {
     if (
       error.response &&
@@ -14,7 +14,6 @@ export const getUserData = async (userId) => {
       error.response?.status <= 500
     ) {
       return {
-        success: false,
         error: error.response.data.message || error.response.data,
       };
     }

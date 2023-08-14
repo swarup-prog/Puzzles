@@ -6,24 +6,39 @@ import {
   BiMenuAltRight,
 } from "react-icons/bi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { useState, useContext } from "react";
+import { RiAdminLine } from "react-icons/ri";
+import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/userContext";
 
 import NavigationButton from "./buttons/NavigationButton";
 import DropdownItem from "./DropdownItem";
+import { getUserData } from "../apis/user";
+import jwt_decode from "jwt-decode";
+import { useAlert } from "react-alert";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  // const alert = useAlert()
+
   const userToken = localStorage.getItem("userToken");
   const { setUser } = useContext(UserContext);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [userData, setUserData] = useState(null);
 
   const logoutClickHandler = () => {
     localStorage.removeItem("userToken");
     setUser(null);
     navigate("/");
   };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const userData = await getUserData(jwt_decode(userToken)._id);
+      setUserData(userData);
+    };
+    fetchUserData();
+  }, []);
 
   return (
     <nav style={styles.nav}>
@@ -40,15 +55,28 @@ const Navbar = () => {
       <div style={styles.pageNav}>
         {userToken && (
           <>
-            <span onClick={() => navigate("/contact")}>
-              <BiUserCircle size="25px" />
-            </span>
-            <span onClick={() => navigate("/contact")}>
-              <AiOutlineShoppingCart size="25px" />
-            </span>
-            <span onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-              <BiMenuAltRight size="25px" />
-            </span>
+            {userData && (
+              <>
+                {userData.role === "admin" && (
+                  <span onClick={() => navigate("/admin")}>
+                    <RiAdminLine size="25px" />
+                  </span>
+                )}
+                {userData.role === "user" && (
+                  <>
+                    <span onClick={() => navigate("/contact")}>
+                      <BiUserCircle size="25px" />
+                    </span>
+                    <span onClick={() => navigate("/contact")}>
+                      <AiOutlineShoppingCart size="25px" />
+                    </span>
+                  </>
+                )}
+                <span onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                  <BiMenuAltRight size="25px" />
+                </span>
+              </>
+            )}
 
             {isDropdownOpen && (
               <div style={styles.dropdownContainer}>

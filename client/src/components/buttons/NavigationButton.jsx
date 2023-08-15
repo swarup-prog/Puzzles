@@ -20,6 +20,7 @@ const NavigationButton = ({ to, name, inverted, styles }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        fontSize: "14px",
         cursor: "pointer",
         fontWeight: "normal",
         ...styles,

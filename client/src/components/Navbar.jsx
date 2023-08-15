@@ -14,11 +14,9 @@ import NavigationButton from "./buttons/NavigationButton";
 import DropdownItem from "./DropdownItem";
 import { getUserData } from "../apis/user";
 import jwt_decode from "jwt-decode";
-import { useAlert } from "react-alert";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  // const alert = useAlert()
 
   const userToken = localStorage.getItem("userToken");
   const { setUser } = useContext(UserContext);
@@ -28,17 +26,21 @@ const Navbar = () => {
 
   const logoutClickHandler = () => {
     localStorage.removeItem("userToken");
+    setIsDropdownOpen(false);
     setUser(null);
+    // window.location.reload();
     navigate("/");
   };
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const userData = await getUserData(jwt_decode(userToken)._id);
-      setUserData(userData);
+      if (userToken) {
+        const userData = await getUserData(jwt_decode(userToken)._id);
+        setUserData(userData);
+      }
     };
     fetchUserData();
-  }, []);
+  }, [userToken]);
 
   return (
     <nav style={styles.nav}>

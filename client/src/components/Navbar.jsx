@@ -60,9 +60,14 @@ const Navbar = () => {
             {userData && (
               <>
                 {userData.role === "admin" && (
-                  <span onClick={() => navigate("/admin")}>
-                    <RiAdminLine size="25px" />
-                  </span>
+                  <>
+                    <span onClick={() => navigate("/admin")}>
+                      <RiAdminLine size="25px" />
+                    </span>
+                    <span onClick={logoutClickHandler}>
+                      <BiLogOut size="25px" />
+                    </span>
+                  </>
                 )}
                 {userData.role === "user" && (
                   <>
@@ -72,11 +77,11 @@ const Navbar = () => {
                     <span onClick={() => navigate("/contact")}>
                       <AiOutlineShoppingCart size="25px" />
                     </span>
+                    <span onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                      <BiMenuAltRight size="25px" />
+                    </span>
                   </>
                 )}
-                <span onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-                  <BiMenuAltRight size="25px" />
-                </span>
               </>
             )}
 

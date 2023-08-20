@@ -1,6 +1,3 @@
-// import eye from "../assets/icons/eye.svg";
-// import eyeSlash from "../assets/icons/eyeSlash.svg";
-
 const TextInput = ({ type, value, onChange, name, label, style }) => {
   return (
     <div

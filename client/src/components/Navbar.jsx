@@ -6,7 +6,7 @@ import {
   BiMenuAltRight,
 } from "react-icons/bi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { RiAdminLine } from "react-icons/ri";
+import { LuLayoutDashboard } from "react-icons/lu";
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/userContext";
 
@@ -62,7 +62,7 @@ const Navbar = () => {
                 {userData.role === "admin" && (
                   <>
                     <span onClick={() => navigate("/admin")}>
-                      <RiAdminLine size="25px" />
+                      <LuLayoutDashboard size="25px" />
                     </span>
                     <span onClick={logoutClickHandler}>
                       <BiLogOut size="25px" />

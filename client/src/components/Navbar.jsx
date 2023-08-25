@@ -18,7 +18,7 @@ import jwt_decode from "jwt-decode";
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const userToken = localStorage.getItem("userToken");
+  const userToken = localStorage.getItem("userToken") || "";
   const { setUser } = useContext(UserContext);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -32,14 +32,15 @@ const Navbar = () => {
     navigate("/");
   };
 
+  const fetchUserData = async () => {
+    const userData = await getUserData(jwt_decode(userToken)._id);
+    setUserData(userData);
+  };
+
   useEffect(() => {
-    const fetchUserData = async () => {
-      if (userToken) {
-        const userData = await getUserData(jwt_decode(userToken)._id);
-        setUserData(userData);
-      }
-    };
-    fetchUserData();
+    if (userToken) {
+      fetchUserData();
+    }
   }, [userToken]);
 
   return (

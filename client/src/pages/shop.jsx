@@ -3,14 +3,18 @@ import { useState } from "react";
 
 import Card from "../components/Card";
 import RangeSlider from "../components/RangeSlider";
+import RadioGroupButtons from "../components/RadioGroupButtons";
 // import Footer from "../components/Footer";
 
 import clothesData from "../data/clothesData";
 
 const Shop = () => {
+  const categoryLabels = ["All", "Male", "Female"];
+
   const navigate = useNavigate();
-  const [minPrice, setMinPrice] = useState(0); // Initial minimum price
+  const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(200);
+  const [category, setCategory] = useState("All");
 
   const handleProductClick = (productId) => {
     navigate(`/shop/productDetails/${productId}`);
@@ -21,17 +25,33 @@ const Shop = () => {
     setMaxPrice(newPriceRange[1]);
   };
 
-  const cloths = clothesData.map((clothes) => {
-    return (
-      <Card
-        title={clothes.name}
-        image={clothes.image}
-        price={clothes.price}
-        key={clothes.id}
-        onClick={() => handleProductClick(clothes.id)}
-      />
-    );
-  });
+  const handleRadioChange = (e) => {
+    setCategory(e.target.value);
+  };
+
+  const cloths = clothesData
+    .filter((clothes) => {
+      if (category === "All") {
+        return clothes.price >= minPrice && clothes.price <= maxPrice;
+      } else {
+        return (
+          clothes.price >= minPrice &&
+          clothes.price <= maxPrice &&
+          clothes.category === category
+        );
+      }
+    })
+    .map((clothes) => {
+      return (
+        <Card
+          title={clothes.name}
+          image={clothes.image}
+          price={clothes.price}
+          key={clothes.id}
+          onClick={() => handleProductClick(clothes.id)}
+        />
+      );
+    });
 
   return (
     <div style={styles.mainContainer}>
@@ -48,8 +68,13 @@ const Shop = () => {
           </div>
           <RangeSlider min={0} max={200} onChange={handlePriceChange} />
         </div>
-        <div>
+        <div style={styles.tab}>
           <span style={styles.tabHeading}>Filter by Category</span>
+          <RadioGroupButtons
+            labels={categoryLabels}
+            value={category}
+            onChange={handleRadioChange}
+          />
         </div>
       </section>
       <section style={styles.productsContainer}>{cloths}</section>

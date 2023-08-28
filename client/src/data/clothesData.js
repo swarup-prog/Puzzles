@@ -20,7 +20,7 @@ const clothesData = [
     description:
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: plainWhiteShirt,
-    category: "",
+    category: "Female",
     size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "newArrival",
   },
@@ -32,7 +32,7 @@ const clothesData = [
     description:
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: denimJacket,
-    category: "",
+    category: "Female",
     size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "newArrival",
   },
@@ -44,7 +44,7 @@ const clothesData = [
     description:
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: blackPoloShirt,
-    category: "",
+    category: "Female",
     size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "newArrival",
   },
@@ -56,7 +56,7 @@ const clothesData = [
     description:
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: blueSweatShirt,
-    category: "",
+    category: "Female",
     size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "newArrival",
   },
@@ -68,7 +68,7 @@ const clothesData = [
     description:
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: bluePlainShirt,
-    category: "",
+    category: "Male",
     size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "newArrival",
   },
@@ -80,7 +80,7 @@ const clothesData = [
     description:
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: darkBlueShirt,
-    category: "",
+    category: "Male",
     tags: "newArrival",
   },
   {
@@ -91,7 +91,7 @@ const clothesData = [
     description:
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: outcastTShirt,
-    category: "",
+    category: "Male",
     size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "newArrival",
   },
@@ -103,7 +103,7 @@ const clothesData = [
     description:
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: poloPlainShirt,
-    category: "",
+    category: "Male",
     size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "newArrival",
   },
@@ -127,7 +127,7 @@ const clothesData = [
     description:
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: redShirt,
-    category: "",
+    category: "Female",
     tags: "topSeller",
   },
   {
@@ -138,7 +138,7 @@ const clothesData = [
     description:
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: poloWhiteShirt,
-    category: "",
+    category: "Female",
     size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "topSeller",
   },
@@ -150,7 +150,7 @@ const clothesData = [
     description:
       "A classic t-shirt never goes out of style. This is our most premium collection of shirt. This plain white shirt is made up of pure cotton and has a premium finish.",
     image: pinkCasualShirt,
-    category: "",
+    category: "Female",
     size: ["Small", "Medim", "Large", "Extra Large"],
     tags: "topSeller",
   },

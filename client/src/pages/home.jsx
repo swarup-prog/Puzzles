@@ -147,7 +147,7 @@ const styles = {
     backgroundRepeat: "no-repeat",
     display: "flex",
     justifyContent: "flex-end",
-    paddingRight: "102px",
+    paddingRight: "165px",
   },
 
   banner: {

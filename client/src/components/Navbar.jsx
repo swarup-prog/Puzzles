@@ -15,6 +15,8 @@ import DropdownItem from "./DropdownItem";
 import { getUserData } from "../apis/user";
 import jwt_decode from "jwt-decode";
 
+import logo from "../assets/logoPng.png";
+
 const Navbar = () => {
   const navigate = useNavigate();
 
@@ -46,6 +48,7 @@ const Navbar = () => {
   return (
     <nav style={styles.nav}>
       <div style={styles.brandTitle} onClick={() => navigate("/")}>
+        <img src={logo} alt="" width="35px" />
         Puzzles
       </div>
       <div style={styles.pageNav}>
@@ -130,6 +133,7 @@ const styles = {
     fontFamily: "Arimo",
     fontWeight: 700,
     cursor: "pointer",
+    gap: 10,
   },
 
   pageNav: {

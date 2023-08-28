@@ -4,7 +4,9 @@ import { signup } from "../apis/signup";
 import { useAlert } from "react-alert";
 
 import PrimaryButton from "../components/buttons/PrimaryButton";
-import TextInput from "../components/TextInput";
+import TextInput from "../components/textFields/TextInput";
+
+import loginBanner from "../assets/banners/loginBanner.jpg";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -44,7 +46,9 @@ const Signup = () => {
 
   return (
     <div style={styles.container}>
-      <section style={styles.bannerSection}>PUZZLES</section>
+      <section style={styles.bannerSection}>
+        <img src={loginBanner} alt="" style={styles.banner} />
+      </section>
       <section style={styles.formSection}>
         <h1>SIGNUP</h1>
         <form style={styles.form} onSubmit={submitHandler}>
@@ -102,16 +106,23 @@ const styles = {
   container: {
     display: "flex",
     flexDirection: "row",
-    height: "90.5vh",
+    height: "91vh",
   },
 
   bannerSection: {
     display: "flex",
     flex: 1,
-    background: "#f5f7f9",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+    backdropFilter: "blur(10px)",
+    background:
+      "linear-gradient(to bottom left, rgba(103, 170, 220, 0.8), rgba(255, 218, 173, 0.8), rgba(139, 89, 30, 0.8))",
+  },
+
+  banner: {
+    height: "580px",
+    width: "387px",
   },
 
   formSection: {

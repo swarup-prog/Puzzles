@@ -1,14 +1,24 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import Card from "../components/Card";
+import RangeSlider from "../components/RangeSlider";
+// import Footer from "../components/Footer";
 
 import clothesData from "../data/clothesData";
 
 const Shop = () => {
   const navigate = useNavigate();
+  const [minPrice, setMinPrice] = useState(0); // Initial minimum price
+  const [maxPrice, setMaxPrice] = useState(200);
 
   const handleProductClick = (productId) => {
     navigate(`/shop/productDetails/${productId}`);
+  };
+
+  const handlePriceChange = (newPriceRange) => {
+    setMinPrice(newPriceRange[0]);
+    setMaxPrice(newPriceRange[1]);
   };
 
   const cloths = clothesData.map((clothes) => {
@@ -25,8 +35,25 @@ const Shop = () => {
 
   return (
     <div style={styles.mainContainer}>
-      <section style={styles.tabsCotainer}>Tabs</section>
+      <section style={styles.tabsCotainer}>
+        <div style={styles.tab}>
+          <span style={styles.tabHeading}>Filter by Price</span>
+          <div style={styles.priceRange}>
+            <span>
+              Min: <span style={styles.price}>$ {minPrice}</span>
+            </span>
+            <span>
+              Max: <span style={styles.price}>$ {maxPrice}</span>
+            </span>
+          </div>
+          <RangeSlider min={0} max={200} onChange={handlePriceChange} />
+        </div>
+        <div>
+          <span style={styles.tabHeading}>Filter by Category</span>
+        </div>
+      </section>
       <section style={styles.productsContainer}>{cloths}</section>
+      {/* <Footer /> */}
     </div>
   );
 };
@@ -37,14 +64,36 @@ const styles = {
   mainContainer: {
     display: "flex",
     padding: "20px 165px 0 165px",
-    background: "#f5f7f7",
   },
 
   tabsCotainer: {
     display: "flex",
     flex: 1,
     flexDirection: "column",
-    background: "#FFFFFF",
+    marginRight: "20px",
+    gap: 40,
+  },
+
+  tab: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 15,
+  },
+
+  tabHeading: {
+    fontSize: "17px",
+    fontWeight: 700,
+  },
+
+  priceRange: {
+    display: "flex",
+    gap: 50,
+    fontSize: "16px",
+  },
+
+  price: {
+    fontWeight: 700,
+    color: "#024E82",
   },
 
   productsContainer: {
@@ -53,6 +102,5 @@ const styles = {
     flexWrap: "wrap",
     justifyContent: "space-between",
     gap: 48,
-    background: "#FFFFFF",
   },
 };

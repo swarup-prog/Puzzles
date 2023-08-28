@@ -1,24 +1,6 @@
-import { useRef } from "react";
-
 const Card = ({ image, title, price, onClick }) => {
-  // const cardRef = useRef();
-
-  // const mouseEnterHandler = () => {
-  //   cardRef.current.style.boxShadow = `0 10px 14px rgba(0, 0, 0, 0.9)`;
-  // };
-
-  // const mouseLeaveHandler = () => {
-  //   cardRef.current.style.boxShadow = `none`;
-  // };
-
   return (
-    <div
-      style={styles.productCard}
-      onClick={onClick}
-      // // ref={cardRef}
-      // onMouseEnter={mouseEnterHandler}
-      // onMouseLeave={mouseLeaveHandler}
-    >
+    <div style={styles.productCard} onClick={onClick}>
       <img src={image} alt={title} style={styles.image} />
       <div style={styles.details}>
         <span style={styles.title}>{title}</span>

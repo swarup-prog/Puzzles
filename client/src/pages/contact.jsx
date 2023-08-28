@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 import Header from "../components/Header";
-import TextInput from "../components/TextInput";
-import TextArea from "../components/TextArea";
+import TextInput from "../components/textFields/TextInput";
+import TextArea from "../components/textFields/TextArea";
 import PrimaryButton from "../components/buttons/PrimaryButton";
 import style from "../styles/styles";
 

@@ -52,7 +52,6 @@ const Navbar = () => {
         <span onClick={() => navigate("/")}>HOME</span>
 
         <span onClick={() => navigate("/shop")}> SHOP</span>
-        <span onClick={() => navigate("/about")}> ABOUT</span>
         <span onClick={() => navigate("/contact")}>CONTACT US</span>
       </div>
       <div style={styles.pageNav}>
@@ -62,7 +61,7 @@ const Navbar = () => {
               <>
                 {userData.role === "admin" && (
                   <>
-                    <span onClick={() => navigate("/admin")}>
+                    <span onClick={() => navigate("/dashboard")}>
                       <LuLayoutDashboard size="25px" />
                     </span>
                     <span onClick={logoutClickHandler}>
@@ -75,7 +74,7 @@ const Navbar = () => {
                     <span onClick={() => navigate("/contact")}>
                       <BiUserCircle size="25px" />
                     </span>
-                    <span onClick={() => navigate("/contact")}>
+                    <span onClick={() => navigate("/cart")}>
                       <AiOutlineShoppingCart size="25px" />
                     </span>
                     <span onClick={() => setIsDropdownOpen(!isDropdownOpen)}>

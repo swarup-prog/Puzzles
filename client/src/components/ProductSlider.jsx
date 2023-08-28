@@ -23,6 +23,7 @@ const ProductSlider = () => {
     }
   };
 
+  // getting the product data
   const productData = clothesData.map((clothes) => {
     return (
       <Card

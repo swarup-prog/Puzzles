@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Tab from "./content/Tab";
+import AddProductForm from "./content/AddProductForm";
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("Orders");
@@ -32,7 +33,7 @@ const AdminDashboard = () => {
       {/* Content  */}
       <section style={styles.detailContainer}>
         {activeTab === "Orders" && <div>Orders</div>}
-        {activeTab === "Add Products" && <div>Add Roducts</div>}
+        {activeTab === "Add Products" && <AddProductForm />}
         {activeTab === "Reviews" && <div>Reviews</div>}
       </section>
     </div>
@@ -69,6 +70,7 @@ const styles = {
     flex: 4,
     flexWrap: "wrap",
     justifyContent: "space-between",
+    marginLeft: "40px",
     gap: 48,
   },
 };

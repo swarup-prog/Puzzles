@@ -4,7 +4,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 
-const RadioGroupButtons = ({ labels, value, onChange }) => {
+const RadioGroupButtons = ({ name, labels, value, onChange }) => {
   return (
     <FormControl>
       <RadioGroup

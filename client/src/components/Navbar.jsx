@@ -37,6 +37,7 @@ const Navbar = () => {
   const fetchUserData = async () => {
     const userData = await getUserData(jwt_decode(userToken)._id);
     setUserData(userData);
+    console.log(await userData);
   };
 
   useEffect(() => {
@@ -55,6 +56,7 @@ const Navbar = () => {
         <span onClick={() => navigate("/")}>HOME</span>
 
         <span onClick={() => navigate("/shop")}> SHOP</span>
+
         <span onClick={() => navigate("/contact")}>CONTACT US</span>
       </div>
       <div style={styles.pageNav}>

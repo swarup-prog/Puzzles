@@ -36,5 +36,6 @@ const styles = {
     padding: "18px",
     fontSize: "medium",
     fontFamily: "Lato",
+    resize: "none",
   },
 };

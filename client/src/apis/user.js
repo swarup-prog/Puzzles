@@ -5,7 +5,7 @@ export const getUserData = async (userId) => {
     const API_URL = "http://localhost:8000/api";
 
     const response = await axios.get(`${API_URL}/user/${userId}`);
-    const data = response.data;
+    const data = response?.data;
     return data;
   } catch (error) {
     if (

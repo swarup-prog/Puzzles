@@ -4,7 +4,7 @@ import { useAlert } from "react-alert";
 import { login } from "../apis/login";
 import jwt_decode from "jwt-decode";
 
-import TextInput from "../components/textFields/TextInput";
+import TextInput from "../components/inputFields/TextInput";
 import PrimaryButton from "../components/buttons/PrimaryButton";
 import { UserContext } from "../context/userContext";
 
@@ -13,7 +13,7 @@ import loginBanner from "../assets/banners/loginBanner.jpg";
 const Login = () => {
   const navigate = useNavigate();
   const alert = useAlert();
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -37,7 +37,6 @@ const Login = () => {
     } else {
       alert.error(response.error);
     }
-    console.log(await user);
     console.log("response", response);
   };
 

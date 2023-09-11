@@ -3,14 +3,21 @@ import TextInput from "../../../components/inputFields/TextInput";
 import TextArea from "../../../components/inputFields/TextArea";
 import FileInput from "../../../components/inputFields/FileInput";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
+import ItemDropdown from "../../../components/ItemDropdown";
 
 const AddProductForm = () => {
+  const categoryLabels = ["Male", "Female"];
+
   const [formData, setFormData] = useState({
-    productName: "",
-    description: "",
+    name: "",
     price: "",
     offerPrice: "",
-    productImage: null,
+    description: "",
+    image: null,
+    quantity: "1",
+    category: "",
+    size: "",
+    tags: "",
   });
 
   const changeHandler = (e) => {
@@ -23,13 +30,14 @@ const AddProductForm = () => {
   };
 
   return (
-    <div>
+    <div style={styles.container}>
+      <div style={styles.heading}>Add Product</div>
       <form action="" style={styles.form} onSubmit={submitHandler}>
         <TextInput
           type="text"
-          label="Product Name"
-          name="productName"
-          value={formData.productName}
+          label="Name"
+          name="name"
+          value={formData.name}
           onChange={changeHandler}
           style={{ width: "860px" }}
         />
@@ -57,12 +65,21 @@ const AddProductForm = () => {
             style={{ width: "400px" }}
           />
         </div>
+
+        <ItemDropdown
+          name="category"
+          items={categoryLabels}
+          label="Category"
+          value={formData.category}
+          onChange={changeHandler}
+        />
+
         <FileInput
           type="file"
           label="Product Image"
           name="productImage"
           onChange={(e) =>
-            setFormData({ ...formData, productImage: e.target.files[0] })
+            setFormData({ ...formData, image: e.target.files[0] })
           }
           style={{ width: "400px" }}
         />
@@ -76,6 +93,17 @@ const AddProductForm = () => {
 export default AddProductForm;
 
 const styles = {
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 30,
+  },
+
+  heading: {
+    fontSize: "20px",
+    fontWeight: 700,
+  },
+
   form: {
     display: "flex",
     flexDirection: "column",

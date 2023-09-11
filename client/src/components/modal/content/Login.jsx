@@ -1,47 +1,43 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signup } from "../apis/signup";
+import { useState, useContext } from "react";
 import { useAlert } from "react-alert";
+import { login } from "../../../apis/login";
+import jwt_decode from "jwt-decode";
 
-import PrimaryButton from "../components/buttons/PrimaryButton";
-import TextInput from "../components/inputFields/TextInput";
+import TextInput from "../../inputFields/TextInput";
+import PrimaryButton from "../../buttons/PrimaryButton";
+import { UserContext } from "../../../context/userContext";
 
-import loginBanner from "../assets/banners/loginBanner.jpg";
+import loginBanner from "../../../assets/banners/loginBanner.jpg";
 
-const Signup = () => {
+const Login = () => {
   const navigate = useNavigate();
   const alert = useAlert();
+  const { setUser } = useContext(UserContext);
 
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   const changeHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const checkPasswordMatch = () => {
-    if (formData.password !== formData.confirmPassword) {
-      alert.error("Password did not match!");
-    }
-    return true;
-  };
-
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (checkPasswordMatch()) {
-      const response = await signup(formData);
+    const response = await login(formData);
 
-      if (response.success) {
-        alert.success("User registered successfully!");
-      } else {
-      }
-      console.log("response", response);
+    if (response.success) {
+      const userToken = response.data.token;
+      localStorage.setItem("userToken", userToken);
+      setUser(jwt_decode(userToken)._id);
+      alert.success("Logged in successfully!");
+      navigate("/");
+    } else {
+      alert.error(response.error);
     }
+    console.log("response", response);
   };
 
   return (
@@ -50,22 +46,8 @@ const Signup = () => {
         <img src={loginBanner} alt="" style={styles.banner} />
       </section>
       <section style={styles.formSection}>
-        <h1>SIGNUP</h1>
+        <h1> LOGIN</h1>
         <form style={styles.form} onSubmit={submitHandler}>
-          <TextInput
-            type="text"
-            name="firstName"
-            label="First Name"
-            value={formData.firstName}
-            onChange={changeHandler}
-          />
-          <TextInput
-            type="text"
-            name="lastName"
-            label="Last Name"
-            value={formData.lastName}
-            onChange={changeHandler}
-          />
           <TextInput
             type="email"
             name="email"
@@ -80,19 +62,13 @@ const Signup = () => {
             value={formData.password}
             onChange={changeHandler}
           />
-          <TextInput
-            type="password"
-            name="confirmPassword"
-            label="Confirm Password"
-            value={formData.confirmPassword}
-            onChange={changeHandler}
-          />
-          <PrimaryButton type="submit" name="Signup" />
+          <PrimaryButton type="submit" name="Login" />
         </form>
+
         <div style={{ display: "flex", gap: 8 }}>
-          Already have an acoount?
-          <span style={styles.span} onClick={() => navigate("/login")}>
-            Login
+          Don't have an acoount?
+          <span style={styles.span} onClick={() => navigate("/signup")}>
+            Signup
           </span>
         </div>
       </section>
@@ -100,7 +76,7 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;
 
 const styles = {
   container: {

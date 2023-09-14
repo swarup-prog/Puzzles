@@ -4,9 +4,18 @@ import TextArea from "../../../components/inputFields/TextArea";
 import FileInput from "../../../components/inputFields/FileInput";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import ItemDropdown from "../../../components/ItemDropdown";
+import CheckboxGroup from "../../../components/CheckboxGroup";
+
+import { addProduct } from "../../../apis/addProduct";
 
 const AddProductForm = () => {
-  const categoryLabels = ["Male", "Female"];
+  const categoryLabels = ["Male", "Female", "Unisex"];
+  const sizeLabels = ["S", "M", "L", "XL", "XXL"];
+
+  const [file, setFile] = useState({
+    preview: "",
+    data: "",
+  });
 
   const [formData, setFormData] = useState({
     name: "",
@@ -16,7 +25,7 @@ const AddProductForm = () => {
     image: null,
     quantity: "1",
     category: "",
-    size: "",
+    size: [],
     tags: "",
   });
 
@@ -24,9 +33,49 @@ const AddProductForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = (e) => {
+  const handlefileChange = useCallback((e) => {
+    const file = e.target.files[0];
+    const name = file.name;
+    if (!file) {
+      toastError("Please select a file");
+    }
+
+    setFile({
+      preview: URL.createObjectURL(file),
+      data: file,
+    });
+  });
+
+  const checkboxClickHandler = (e) => {
+    const checkboxValue = e.target.value;
+    const isChecked = e.target.checked;
+
+    if (isChecked) {
+      // Append the checkboxValue to the formData.size array
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        size: [...prevFormData.size, checkboxValue],
+      }));
+    } else {
+      // Remove the checkboxValue from the formData.size array
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        size: prevFormData.size.filter((size) => size !== checkboxValue),
+      }));
+    }
+  };
+
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    const response = await addProduct(formData);
+
+    if (response.success) {
+      alert.success(response.message);
+    } else {
+    }
+    console.log("response", response);
+    // console.log(typeof formData.image);
+    // console.log(typeof formData.name);
   };
 
   return (
@@ -47,7 +96,7 @@ const AddProductForm = () => {
           value={formData.description}
           onChange={changeHandler}
         />
-        <div style={styles.priceFields}>
+        <div style={styles.duoField}>
           <TextInput
             type="text"
             label="Price"
@@ -65,22 +114,50 @@ const AddProductForm = () => {
             style={{ width: "400px" }}
           />
         </div>
+        <div style={styles.duoField}>
+          <TextInput
+            type="text"
+            label="Quantity"
+            name="quantity"
+            value={formData.quantity}
+            onChange={changeHandler}
+            style={{ width: "400px" }}
+          />
+          <TextInput
+            type="text"
+            label="Tags"
+            name="tags"
+            value={formData.tags}
+            onChange={changeHandler}
+            style={{ width: "400px" }}
+          />
+        </div>
 
-        <ItemDropdown
-          name="category"
-          items={categoryLabels}
-          label="Category"
-          value={formData.category}
-          onChange={changeHandler}
-        />
+        <div style={{ ...styles.duoField, gap: 210 }}>
+          <ItemDropdown
+            name="category"
+            items={categoryLabels}
+            label="Category"
+            value={formData.category}
+            onChange={changeHandler}
+          />
+          <CheckboxGroup
+            items={sizeLabels}
+            label="Sizes"
+            onClick={checkboxClickHandler}
+          />
+        </div>
 
+        <span>
+          Size: {formData.size} Quantity: {formData.quantity}
+        </span>
         <FileInput
           type="file"
           label="Product Image"
           name="productImage"
-          onChange={(e) =>
-            setFormData({ ...formData, image: e.target.files[0] })
-          }
+          // onChange={(e) =>
+          //   setFormData({ ...formData, image: e.target.files[0] })
+          // }
           style={{ width: "400px" }}
         />
 
@@ -109,7 +186,7 @@ const styles = {
     flexDirection: "column",
     gap: 20,
   },
-  priceFields: {
+  duoField: {
     display: "flex",
     gap: 20,
   },

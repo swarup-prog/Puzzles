@@ -8,7 +8,7 @@ import {
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { useState, useContext, useEffect } from "react";
-import { UserContext } from "../context/userContext";
+import UserContext from "../context/userContext";
 
 import NavigationButton from "./buttons/NavigationButton";
 import DropdownItem from "./DropdownItem";
@@ -58,6 +58,8 @@ const Navbar = () => {
         <span onClick={() => navigate("/shop")}> SHOP</span>
 
         <span onClick={() => navigate("/contact")}>CONTACT US</span>
+
+        <span onClick={() => navigate("/blog")}>BLOG</span>
       </div>
       <div style={styles.pageNav}>
         {userToken && (

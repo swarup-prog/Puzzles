@@ -6,7 +6,7 @@ import jwt_decode from "jwt-decode";
 
 import TextInput from "../../inputFields/TextInput";
 import PrimaryButton from "../../buttons/PrimaryButton";
-import { UserContext } from "../../../context/userContext";
+import UserContext from "../../../context/userContext";
 
 import loginBanner from "../../../assets/banners/loginBanner.jpg";
 

@@ -9,10 +9,12 @@ router.post("/", async (req, res) => {
     if (error) {
       return res.status(400).send(error.details[0].message);
     }
-    await new Product({ ...body }).save();
+    const imageUrl = await cloudinary.uploader.upload(body.image);
+
+    await new Product({ ...body, image: imageUrl }).save();
     res.status(201).send({ message: "Product added successfully." });
   } catch (error) {
-    res.status(500).send({ message: "Internal server error" });
+    res.status(500).send({ message: error });
   }
 });
 

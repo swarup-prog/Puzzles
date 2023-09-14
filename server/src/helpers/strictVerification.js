@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+var jwt = require("jsonwebtoken");
 
 function strictVerifyToken(req, res, next) {
   const secretAccessKey = process.env.JWT_SECRET_CODE;
@@ -9,15 +9,19 @@ function strictVerifyToken(req, res, next) {
 
   jwt.verify(token, secretAccessKey, function (err, decoded) {
     if (err)
-      return res.status(500).send({
-        auth: false,
-        message: "Failed to authenticate token.",
-        err,
-        token,
-      });
+      return res
+        .status(500)
+        .send({
+          auth: false,
+          message: "Failed to authenticate token.",
+          err,
+          token,
+        });
 
-    // if eveything good, save to request for use in other routes
+    // if everything good, save to request for use in other routes
     req.decoded = decoded; // set decoded object on req
     next();
   });
 }
+
+module.exports = strictVerifyToken;

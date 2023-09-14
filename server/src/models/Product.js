@@ -28,7 +28,7 @@ const productSchema = new mongoose.Schema({
     default: 1,
   },
   category: {
-    type: [String],
+    type: String,
     required: true,
   },
   size: {
@@ -47,12 +47,12 @@ const validate = (data) => {
   const schema = Joi.object({
     name: Joi.string().required().label("Product Name"),
     price: Joi.number().required().label("Price"),
-    offerPrice: Joi.number().required().label("Offer Price"),
+    offerPrice: Joi.number().optional().label("Offer Price"),
     description: Joi.string().required().label("Description"),
     image: Joi.string().label("product Image"),
-    quantity: Joi.number().required().label("Quantity"),
+    quantity: Joi.number().optional().label("Quantity"),
     category: Joi.string().required().label("Category"),
-    size: Joi.string().required().label("Size"),
+    size: Joi.array().required().label("Size"),
     tags: Joi.string().required().label("Tags"),
   });
   return schema.validate(data);

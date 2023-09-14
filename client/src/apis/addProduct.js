@@ -11,34 +11,30 @@ export const addProduct = async ({
   tags,
 }) => {
   const API_URL = "http://localhost:8000/api";
-  const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/upload`;
 
   try {
-    const formData = new FormData();
-    formData.append("image", image);
-
-    const cloudinaryResponse = await axios.post(CLOUDINARY_URL, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
+    const cloudinaryResponse = await axios.post(
+      `${API_URL}/cloudinary`,
+      {
+        file: image,
       },
-    });
+      { headers: { "Content-Type": "multipart/form-data" } }
+    );
 
-    const imageUrl = cloudinaryResponse.data.secure_url;
-
-    const response = await axios.post(`${API_URL}/addProduct`, {
-      name,
-      price,
-      offerPrice,
-      description,
-      image: imageUrl,
-      category,
-      size,
-      tags,
-    });
+    // const response = await axios.post(`${API_URL}/addProduct`, {
+    //   name,
+    //   price,
+    //   offerPrice,
+    //   description,
+    //   image: cloudinaryResponse.url,
+    //   category,
+    //   size,
+    //   tags,
+    // });
 
     return {
       success: true,
-      data: response?.data,
+      data: cloudinaryResponse?.data,
     };
   } catch (error) {
     if (

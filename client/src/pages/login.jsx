@@ -6,14 +6,14 @@ import jwt_decode from "jwt-decode";
 
 import TextInput from "../components/inputFields/TextInput";
 import PrimaryButton from "../components/buttons/PrimaryButton";
-import { UserContext } from "../context/userContext";
+import UserContext from "../context/userContext";
 
 import loginBanner from "../assets/banners/loginBanner.jpg";
 
 const Login = () => {
   const navigate = useNavigate();
   const alert = useAlert();
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -32,11 +32,13 @@ const Login = () => {
       const userToken = response.data.token;
       localStorage.setItem("userToken", userToken);
       setUser(jwt_decode(userToken)._id);
+      // document.cookie = `x-access-token=${userToken}; path=/;`;
       alert.success("Logged in successfully!");
       navigate("/");
     } else {
       alert.error(response.error);
     }
+    console.log("user", user);
     console.log("response", response);
   };
 

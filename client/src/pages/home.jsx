@@ -2,11 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { FaShippingFast, FaFingerprint } from "react-icons/fa";
 import { MdSupport } from "react-icons/md";
 import { FaArrowRotateLeft } from "react-icons/fa6";
+import { useContext } from "react";
 
 import Card from "../components/Card";
 import Benifit from "../components/Benifit";
 import Promo from "../components/Promo";
 import clothesData from "../data/clothesData";
+import { ProductContext } from "../context/productProvider";
 // import ProductSlider from "../components/ProductSlider";
 
 import homeBanner from "../assets/homeBanner.png";
@@ -20,19 +22,23 @@ const Home = () => {
     navigate(`/shop/productDetails/${productId}`);
   };
 
-  const newArrivals = clothesData.map((clothes) => {
-    if (clothes.tags === "newArrival") {
+  const products = useContext(ProductContext);
+  console.log(products);
+
+  const newArrivals = products?.map((product) => {
+    console.log(product.tags);
+    if (product.tags === "New Arrivals") {
       return (
         <Card
-          title={clothes.name}
-          image={clothes.image}
-          price={clothes.price}
-          key={clothes.id}
-          onClick={() => handleProductClick(clothes.id)}
+          title={product.name}
+          image={product.image}
+          price={product.price}
+          key={product._id}
+          onClick={() => handleProductClick(product._id)}
         />
       );
     }
-    return null;
+    // return null;
   });
 
   const topSellers = clothesData.map((clothes) => {

@@ -12,6 +12,7 @@ const cloudinaryRoute = require("./routes/cloudinary.js");
 const addProductRoutes = require("./routes/productRoutes/addProduct.js");
 const createPostRoutes = require("./routes/blogRoutes/createPost.js");
 const getPostRoutes = require("./routes/blogRoutes/getPost.js");
+const getProductRoutes = require("./routes/productRoutes/getProducts.js");
 
 connection();
 
@@ -38,6 +39,7 @@ app.use("/api/cloudinary", cloudinaryRoute);
 app.use("/api/addProduct", addProductRoutes);
 app.use("/api/createPost", createPostRoutes);
 app.use("/api/getPost", getPostRoutes);
+app.use("/api/getProducts", getProductRoutes);
 
 app.listen(8000, () => {
   console.log("listening on port 8000");

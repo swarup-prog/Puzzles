@@ -9,9 +9,8 @@ router.post("/", async (req, res) => {
     if (error) {
       return res.status(400).send(error.details[0].message);
     }
-    const imageUrl = await cloudinary.uploader.upload(body.image);
 
-    await new Product({ ...body, image: imageUrl }).save();
+    await new Product({ ...body }).save();
     res.status(201).send({ message: "Product added successfully." });
   } catch (error) {
     res.status(500).send({ message: error });

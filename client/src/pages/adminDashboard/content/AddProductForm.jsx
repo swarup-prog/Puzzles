@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import TextInput from "../../../components/inputFields/TextInput";
 import TextArea from "../../../components/inputFields/TextArea";
 import FileInput from "../../../components/inputFields/FileInput";
@@ -7,6 +7,8 @@ import ItemDropdown from "../../../components/ItemDropdown";
 import CheckboxGroup from "../../../components/CheckboxGroup";
 
 import { addProduct } from "../../../apis/addProduct";
+import { toastError, toastSuccess } from "../../../utils/toast";
+import axios from "axios";
 
 const AddProductForm = () => {
   const categoryLabels = ["Male", "Female", "Unisex"];
@@ -17,12 +19,24 @@ const AddProductForm = () => {
     data: "",
   });
 
+  const initialFormData = {
+    name: "",
+    price: "",
+    offerPrice: "",
+    description: "",
+    image: "",
+    quantity: "1",
+    category: "",
+    size: [],
+    tags: "",
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     price: "",
     offerPrice: "",
     description: "",
-    image: null,
+    image: "",
     quantity: "1",
     category: "",
     size: [],
@@ -33,9 +47,9 @@ const AddProductForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handlefileChange = useCallback((e) => {
+  const handleFileChange = useCallback((e) => {
     const file = e.target.files[0];
-    const name = file.name;
+    // const name = file.name;
     if (!file) {
       toastError("Please select a file");
     }
@@ -44,7 +58,8 @@ const AddProductForm = () => {
       preview: URL.createObjectURL(file),
       data: file,
     });
-  });
+    console.log(file);
+  }, []);
 
   const checkboxClickHandler = (e) => {
     const checkboxValue = e.target.value;
@@ -65,17 +80,49 @@ const AddProductForm = () => {
     }
   };
 
+  const cloudinaryUpload = async (form) => {
+    const response = await axios.post(
+      "http://localhost:8000/api/cloudinary",
+      form,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    if (response.data.url) {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        image: response.data.url,
+      }));
+    }
+    return response.status;
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
-    const response = await addProduct(formData);
+    const form = new FormData();
+    form.append("file", file.data);
 
-    if (response.success) {
-      alert.success(response.message);
-    } else {
-    }
-    console.log("response", response);
-    // console.log(typeof formData.image);
-    // console.log(typeof formData.name);
+    const cloudinaryResponse = await cloudinaryUpload(form);
+    console.log(cloudinaryResponse);
+
+    setTimeout(async () => {
+      if (cloudinaryResponse === 200) {
+        console.log(formData);
+        const response = await addProduct(formData);
+        if (response.success) {
+          toastSuccess(response.message);
+          setFormData(initialFormData);
+        } else {
+          toastError(response.error);
+        }
+        console.log("response", response);
+      } else {
+        toastError("Cloudinary upload failed");
+        console.log("error");
+      }
+    }, 3000);
   };
 
   return (
@@ -155,11 +202,10 @@ const AddProductForm = () => {
           type="file"
           label="Product Image"
           name="productImage"
-          // onChange={(e) =>
-          //   setFormData({ ...formData, image: e.target.files[0] })
-          // }
+          onChange={handleFileChange}
           style={{ width: "400px" }}
         />
+        <img src={file.preview} alt="" width={250} height={300} />
 
         <PrimaryButton type="submit" name="Add Product" />
       </form>

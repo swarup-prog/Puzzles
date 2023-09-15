@@ -4,7 +4,7 @@ const Card = ({ image, title, price, onClick }) => {
       <img src={image} alt={title} style={styles.image} />
       <div style={styles.details}>
         <span style={styles.title}>{title}</span>
-        <span style={styles.price}>$ {price}</span>
+        <span style={styles.price}>$ {price}.00</span>
       </div>
     </div>
   );

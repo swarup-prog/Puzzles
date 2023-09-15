@@ -6,6 +6,7 @@ export const addProduct = async ({
   offerPrice,
   description,
   image,
+  quantity,
   category,
   size,
   tags,
@@ -13,28 +14,21 @@ export const addProduct = async ({
   const API_URL = "http://localhost:8000/api";
 
   try {
-    const cloudinaryResponse = await axios.post(
-      `${API_URL}/cloudinary`,
-      {
-        file: image,
-      },
-      { headers: { "Content-Type": "multipart/form-data" } }
-    );
-
-    // const response = await axios.post(`${API_URL}/addProduct`, {
-    //   name,
-    //   price,
-    //   offerPrice,
-    //   description,
-    //   image: cloudinaryResponse.url,
-    //   category,
-    //   size,
-    //   tags,
-    // });
+    const response = await axios.post(`${API_URL}/addProduct`, {
+      name,
+      price,
+      offerPrice,
+      description,
+      image,
+      quantity,
+      category,
+      size,
+      tags,
+    });
 
     return {
       success: true,
-      data: cloudinaryResponse?.data,
+      data: response?.data,
     };
   } catch (error) {
     if (

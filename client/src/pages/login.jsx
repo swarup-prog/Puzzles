@@ -32,6 +32,7 @@ const Login = () => {
       const userToken = response.data.token;
       localStorage.setItem("userToken", userToken);
       setUser(jwt_decode(userToken)._id);
+      setUser("Hello");
       // document.cookie = `x-access-token=${userToken}; path=/;`;
       alert.success("Logged in successfully!");
       navigate("/");

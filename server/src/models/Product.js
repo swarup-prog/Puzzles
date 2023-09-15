@@ -49,7 +49,7 @@ const validate = (data) => {
     price: Joi.number().required().label("Price"),
     offerPrice: Joi.number().optional().label("Offer Price"),
     description: Joi.string().required().label("Description"),
-    image: Joi.string().label("product Image"),
+    image: Joi.string().label("Product Image"),
     quantity: Joi.number().optional().label("Quantity"),
     category: Joi.string().required().label("Category"),
     size: Joi.array().required().label("Size"),

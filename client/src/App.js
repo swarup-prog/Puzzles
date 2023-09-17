@@ -7,13 +7,14 @@ import Signup from "./pages/signup";
 import ShoppingCart from "./pages/shoppingCart";
 import AdminDashboard from "./pages/adminDashboard/adminDashboard";
 import Blog from "./pages/blog";
+import { ToastContainer } from "react-toastify";
 
 import Navbar from "./components/Navbar";
 
 import { Routes, Route } from "react-router-dom";
 import { positions, Provider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
-import UserProvider from "./context/userProvider";
+import { UserProvider } from "./context/userProvider";
 import { ProductProvider } from "./context/productProvider";
 import CreatePost from "./pages/createPost";
 
@@ -27,6 +28,7 @@ const App = () => {
     <div>
       <UserProvider>
         <ProductProvider>
+          <ToastContainer />
           <Navbar />
           <Provider template={AlertTemplate} {...options}>
             <Routes>

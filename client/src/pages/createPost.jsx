@@ -3,8 +3,6 @@ import TextInput from "../components/inputFields/TextInput";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import PrimaryButton from "../components/buttons/PrimaryButton";
-import createPost from "../apis/createPost";
-import { useAlert } from "react-alert";
 
 const modules = {
   toolbar: [
@@ -35,7 +33,6 @@ const formats = [
 ];
 
 const CreatePost = () => {
-  const alert = useAlert();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -49,17 +46,11 @@ const CreatePost = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    // const response = await createPost(formData);
-
-    // if (response.success) {
-    //   alert.success("Post created Successfully!");
-    // }
   };
 
   return (
     <div style={styles.container}>
       <h1>Create a new Blog Post</h1>
-      {/* <span>{user}</span> */}
       <form onSubmit={submitHandler} style={styles.form}>
         <TextInput
           type="title"

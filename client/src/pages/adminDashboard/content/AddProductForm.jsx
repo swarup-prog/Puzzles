@@ -90,13 +90,8 @@ const AddProductForm = () => {
         },
       }
     );
-    if (response.data.url) {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        image: response.data.url,
-      }));
-    }
-    return response.status;
+
+    return response;
   };
 
   const submitHandler = async (e) => {
@@ -107,22 +102,23 @@ const AddProductForm = () => {
     const cloudinaryResponse = await cloudinaryUpload(form);
     console.log(cloudinaryResponse);
 
-    setTimeout(async () => {
-      if (cloudinaryResponse === 200) {
-        console.log(formData);
-        const response = await addProduct(formData);
-        if (response.success) {
-          toastSuccess(response.message);
-          setFormData(initialFormData);
-        } else {
-          toastError(response.error);
-        }
-        console.log("response", response);
-      } else {
-        toastError("Cloudinary upload failed");
-        console.log("error");
+    if (cloudinaryResponse.status === 200) {
+      console.log(formData);
+      if (cloudinaryResponse.data.url) {
+        formData.image = cloudinaryResponse.data.url;
       }
-    }, 3000);
+      const response = await addProduct(formData);
+      if (response.success) {
+        toastSuccess(response.message);
+        setFormData(initialFormData);
+      } else {
+        toastError(response.error);
+      }
+      console.log("response", response);
+    } else {
+      toastError("Cloudinary upload failed");
+      console.log("error");
+    }
   };
 
   return (

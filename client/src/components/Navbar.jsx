@@ -8,7 +8,7 @@ import {
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { useState, useContext, useEffect } from "react";
-import UserContext from "../context/userContext";
+import { UserContext } from "../context/userProvider";
 
 import NavigationButton from "./buttons/NavigationButton";
 import DropdownItem from "./DropdownItem";

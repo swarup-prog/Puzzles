@@ -23,11 +23,9 @@ const Home = () => {
   };
 
   const products = useContext(ProductContext);
-  console.log(products);
 
   const newArrivals = products?.map((product) => {
-    console.log(product.tags);
-    if (product.tags === "New Arrivals") {
+    if (product.tags === "New Arrival") {
       return (
         <Card
           title={product.name}
@@ -38,7 +36,7 @@ const Home = () => {
         />
       );
     }
-    // return null;
+    return null;
   });
 
   const topSellers = clothesData.map((clothes) => {

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const createPost = async ({ title, summary, content }) => {
+export const createPost = async ({ title, summary, content, image, user }) => {
   const API_URL = "http://localhost:8000/api";
 
   try {
@@ -8,6 +8,8 @@ export const createPost = async ({ title, summary, content }) => {
       title,
       summary,
       content,
+      image,
+      user,
     });
 
     return {

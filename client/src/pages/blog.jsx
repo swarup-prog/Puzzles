@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getPost } from "../apis/getPost";
 
 import NavigationButton from "../components/buttons/NavigationButton";
+import BlogCard from "../components/BlogCard";
 
 const Blog = () => {
   const [blogs, setBlogs] = useState();
@@ -17,13 +18,21 @@ const Blog = () => {
     fetchBlogs();
   }, []);
 
+  const blogCards = blogs?.map((blog) => {
+    return (
+      <BlogCard
+        title={blog.title}
+        image={blog.image}
+        summary={blog.summary}
+        key={blog._id}
+      />
+    );
+  });
+
   return (
     <div style={styles.container}>
       <NavigationButton to={"/createPost"} name="Create Post" />
-      {/* <div>
-        <h1>{blogs[1].title}</h1>
-        <p>{blogs[1].summary}</p>
-      </div> */}
+      <div style={styles.blogContainer}>{blogCards}</div>
     </div>
   );
 };
@@ -35,7 +44,11 @@ const styles = {
     margin: "20px 165px",
     display: "flex",
     gap: 20,
-    alignItems: "flex-end",
+    alignItems: "flex-start",
     flexDirection: "column",
+  },
+
+  blogContainer: {
+    width: "100%",
   },
 };

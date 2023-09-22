@@ -7,13 +7,11 @@ import {
 } from "react-icons/bi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { UserContext } from "../context/userProvider";
 
 import NavigationButton from "./buttons/NavigationButton";
 import DropdownItem from "./DropdownItem";
-import { getUserData } from "../apis/user";
-import jwt_decode from "jwt-decode";
 
 import logo from "../assets/logoPng.png";
 
@@ -21,30 +19,17 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const userToken = localStorage.getItem("userToken") || "";
-  const { setUser } = useContext(UserContext);
+  const { userData, logout } = useContext(UserContext);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [userData, setUserData] = useState(null);
 
   const logoutClickHandler = () => {
     localStorage.removeItem("userToken");
     setIsDropdownOpen(false);
-    setUser(null);
-    // window.location.reload();
+    logout();
+    console.log(userData);
     navigate("/");
   };
-
-  const fetchUserData = async () => {
-    const userData = await getUserData(jwt_decode(userToken)._id);
-    setUserData(userData);
-    console.log(await userData);
-  };
-
-  useEffect(() => {
-    if (userToken) {
-      fetchUserData();
-    }
-  }, [userToken]);
 
   return (
     <nav style={styles.nav}>

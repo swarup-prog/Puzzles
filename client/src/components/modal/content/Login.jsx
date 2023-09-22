@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
-import { useAlert } from "react-alert";
 import { login } from "../../../apis/login";
 import jwt_decode from "jwt-decode";
 
@@ -12,7 +11,6 @@ import loginBanner from "../../../assets/banners/loginBanner.jpg";
 
 const Login = () => {
   const navigate = useNavigate();
-  const alert = useAlert();
   const { setUser } = useContext(UserContext);
 
   const [formData, setFormData] = useState({

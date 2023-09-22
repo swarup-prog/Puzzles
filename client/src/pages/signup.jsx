@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signup } from "../apis/signup";
-import { useAlert } from "react-alert";
 
 import PrimaryButton from "../components/buttons/PrimaryButton";
 import TextInput from "../components/inputFields/TextInput";
@@ -10,7 +9,6 @@ import loginBanner from "../assets/banners/loginBanner.jpg";
 
 const Signup = () => {
   const navigate = useNavigate();
-  const alert = useAlert();
 
   const [formData, setFormData] = useState({
     firstName: "",
